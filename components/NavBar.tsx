@@ -1,5 +1,4 @@
-'use client';
-
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -8,11 +7,11 @@ export default function NavBar() {
   const [open, setOpen] = useState(false);
 
   const links = [
-    { href: '/',         label: 'Home'     },
-{ href: '/services', label: 'Services' },
+    { href: '/', label: 'Home' },
+    { href: '/services', label: 'Services' },
     { href: '/projects', label: 'Projects' },
-    { href: '/about',    label: 'About'    },   // ← fixed route
-    { href: '/contact',  label: 'Contact'  },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' },
   ];
 
   return (
@@ -23,18 +22,15 @@ export default function NavBar() {
       transition={{ type: 'spring', stiffness: 120, damping: 16 }}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
-        {/* animated logo */}
-        <Link
-          href="/"
-          className="text-2xl font-extrabold tracking-wider text-green-600"
-        >
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 1.2 }}
-          >
-            Dmax&nbsp;Solar
-          </motion.span>
+        {/* logo */}
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={240}
+            height={64}
+            className="object-contain"
+          />
         </Link>
 
         {/* desktop links */}
