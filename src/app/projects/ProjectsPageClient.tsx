@@ -1,5 +1,4 @@
 "use client"
-
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import NavBar from "../../../components/NavBar"
@@ -27,7 +26,6 @@ function useReveal() {
 
 export default function ProjectsPageClient() {
   useReveal()
-
   const [activeFilter, setActiveFilter] = useState("all")
 
   /* Project stagger animation */
@@ -148,11 +146,10 @@ export default function ProjectsPageClient() {
   return (
     <>
       <NavBar />
-
       {/* HERO */}
       <header className="relative h-[60vh] overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1600&q=80"
+          src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1800&q=80"
           alt="Solar installation project"
           fill
           priority
@@ -168,39 +165,39 @@ export default function ProjectsPageClient() {
       </header>
 
       {/* STATS SECTION */}
-      <section className="py-20 bg-yellow-50">
+      <section className="py-20 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="reveal text-center">
               <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <div className="text-3xl md:text-4xl font-bold text-yellow-600 mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-blue-800 mb-2">
                   <span className="stat-number">400</span>+
                 </div>
-                <p className="text-gray-600 font-medium">MWp Installed</p>
+                <p className="text-gray-800 font-medium">MWp Installed</p>
               </div>
             </div>
             <div className="reveal text-center">
               <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <div className="text-3xl md:text-4xl font-bold text-yellow-600 mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-blue-800 mb-2">
                   <span className="stat-number">1200</span>+
                 </div>
-                <p className="text-gray-600 font-medium">Projects Completed</p>
+                <p className="text-gray-800 font-medium">Projects Completed</p>
               </div>
             </div>
             <div className="reveal text-center">
               <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <div className="text-3xl md:text-4xl font-bold text-yellow-600 mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-blue-800 mb-2">
                   ₹<span className="stat-number">190</span>Cr+
                 </div>
-                <p className="text-gray-600 font-medium">Client Savings</p>
+                <p className="text-gray-800 font-medium">Client Savings</p>
               </div>
             </div>
             <div className="reveal text-center">
               <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <div className="text-3xl md:text-4xl font-bold text-yellow-600 mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-blue-800 mb-2">
                   <span className="stat-number">95000</span>+
                 </div>
-                <p className="text-gray-600 font-medium">Tons CO₂ Saved</p>
+                <p className="text-gray-800 font-medium">Tons CO₂ Saved</p>
               </div>
             </div>
           </div>
@@ -217,8 +214,8 @@ export default function ProjectsPageClient() {
                 onClick={() => setActiveFilter(id)}
                 className={`flex items-center space-x-2 px-6 py-3 rounded-full font-medium transition-all ${
                   activeFilter === id
-                    ? "bg-yellow-500 text-white shadow-lg"
-                    : "bg-gray-100 text-gray-700 hover:bg-yellow-100"
+                    ? "bg-blue-500 text-white shadow-lg"
+                    : "bg-gray-100 text-gray-700 hover:bg-blue-800"
                 }`}
               >
                 <Icon size={18} />
@@ -248,60 +245,53 @@ export default function ProjectsPageClient() {
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
                   {/* Project Category Badge */}
                   <div className="absolute top-4 left-4">
-                    <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-medium capitalize">
+                    <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium capitalize">
                       {project.category}
                     </span>
                   </div>
-
                   {/* Featured Badge */}
                   {project.featured && (
                     <div className="absolute top-4 right-4">
-                      <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
+                      <span className="bg-blue-800 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
                         <Award size={14} className="mr-1" />
                         Featured
                       </span>
                     </div>
                   )}
                 </div>
-
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-yellow-600 transition-colors">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-800 transition-colors">
                     {project.title}
                   </h3>
-
-                  <div className="flex items-center text-gray-600 mb-3">
+                  <div className="flex items-center text-gray-800 mb-3">
                     <MapPin size={16} className="mr-2" />
                     <span className="text-sm">{project.location}</span>
                   </div>
-
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">{project.description}</p>
-
+                  <p className="text-gray-800 text-sm mb-4 line-clamp-2">{project.description}</p>
                   <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div className="text-center p-3 bg-yellow-50 rounded-lg">
+                    <div className="text-center p-3 bg-blue-50 rounded-lg">
                       <div className="flex items-center justify-center mb-1">
-                        <Zap size={16} className="text-yellow-600" />
+                        <Zap size={16} className="text-blue-800" />
                       </div>
                       <div className="text-sm font-semibold text-gray-900">{project.capacity}</div>
-                      <div className="text-xs text-gray-600">Capacity</div>
+                      <div className="text-xs text-gray-800">Capacity</div>
                     </div>
                     <div className="text-center p-3 bg-green-50 rounded-lg">
                       <div className="flex items-center justify-center mb-1">
-                        <TrendingUp size={16} className="text-green-600" />
+                        <TrendingUp size={16} className="text-green-800" />
                       </div>
                       <div className="text-sm font-semibold text-gray-900">{project.savings}</div>
-                      <div className="text-xs text-gray-600">Savings</div>
+                      <div className="text-xs text-gray-800">Savings</div>
                     </div>
                   </div>
-
                   <div className="flex items-center justify-between">
                     <div className="flex items-center text-gray-500 text-sm">
                       <Calendar size={14} className="mr-1" />
                       {project.year}
                     </div>
-                    <button className="flex items-center text-yellow-600 hover:text-yellow-700 font-medium text-sm">
+                    <button className="flex items-center text-blue-800 hover:text-blue-800 font-medium text-sm">
                       View Details
                       <ChevronRight size={16} className="ml-1" />
                     </button>
@@ -318,9 +308,8 @@ export default function ProjectsPageClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="reveal text-3xl font-bold text-gray-900 mb-4">Featured Case Study</h2>
-            <p className="reveal text-xl text-gray-600">Deep dive into our most impactful project</p>
+            <p className="reveal text-xl text-gray-800">Deep dive into our most impactful project</p>
           </div>
-
           <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2">
               <div className="relative h-64 lg:h-full">
@@ -333,40 +322,38 @@ export default function ProjectsPageClient() {
               </div>
               <div className="p-8 lg:p-12">
                 <div className="reveal">
-                  <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
+                  <span className="bg-blue-800 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
                     Case Study
                   </span>
                   <h3 className="text-2xl font-bold text-gray-900 mt-4 mb-4">
                     Gujarat Solar Farm: 100 MWp Utility Project
                   </h3>
-                  <p className="text-gray-600 mb-6">
+                  <p className="text-gray-800 mb-6">
                     Our largest utility-scale project demonstrates the potential of solar energy at scale. This
                     ground-mounted installation powers over 50,000 homes while creating local employment and
                     contributing to India&lsquo;s renewable energy goals.
                   </p>
                 </div>
-
                 <div className="reveal grid grid-cols-2 gap-6 mb-6">
                   <div>
-                    <div className="text-2xl font-bold text-yellow-600">100 MWp</div>
-                    <div className="text-sm text-gray-600">Total Capacity</div>
+                    <div className="text-2xl font-bold text-blue-800">100 MWp</div>
+                    <div className="text-sm text-gray-800">Total Capacity</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-green-600">85,000</div>
-                    <div className="text-sm text-gray-600">Tons CO₂/year</div>
+                    <div className="text-2xl font-bold text-green-800">85,000</div>
+                    <div className="text-sm text-gray-800">Tons CO₂/year</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-blue-600">50,000+</div>
-                    <div className="text-sm text-gray-600">Homes Powered</div>
+                    <div className="text-2xl font-bold text-blue-800">50,000+</div>
+                    <div className="text-sm text-gray-800">Homes Powered</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-purple-600">₹180Cr</div>
-                    <div className="text-sm text-gray-600">25-year Savings</div>
+                    <div className="text-2xl font-bold text-blue-800">₹180Cr</div>
+                    <div className="text-sm text-gray-800">25-year Savings</div>
                   </div>
                 </div>
-
                 <div className="reveal">
-                  <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-full font-semibold transition-colors">
+                  <button className="bg-blue-800 hover:bg-blue-800 text-white px-6 py-3 rounded-full font-semibold transition-colors">
                     Read Full Case Study
                   </button>
                 </div>
@@ -381,9 +368,8 @@ export default function ProjectsPageClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="reveal text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-            <p className="reveal text-xl text-gray-600">Success stories from our project partners</p>
+            <p className="reveal text-xl text-gray-800">Success stories from our project partners</p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -419,10 +405,10 @@ export default function ProjectsPageClient() {
                   />
                   <div>
                     <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-600">{testimonial.company}</div>
+                    <div className="text-sm text-gray-800">{testimonial.company}</div>
                   </div>
                 </div>
-                <p className="text-gray-600 italic">&quot;{testimonial.quote}&quot;</p>
+                <p className="text-gray-800 italic">&quot;{testimonial.quote}&quot;</p>
               </div>
             ))}
           </div>
@@ -430,7 +416,7 @@ export default function ProjectsPageClient() {
       </section>
 
       {/* CTA */}
-      <section className="relative isolate overflow-hidden bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-600 py-20 text-center text-white">
+      <section className="relative isolate overflow-hidden bg-gradient-to-r from-blue-500 via-blue-800 to-blue-800 py-20 text-center text-white">
         <h2 className="reveal text-3xl font-bold mb-4">Ready to Start Your Solar Project?</h2>
         <p className="reveal mx-auto max-w-xl text-lg mb-8">
           Join 1200+ satisfied clients who have transformed their energy future with DMAX Solar.
@@ -438,19 +424,18 @@ export default function ProjectsPageClient() {
         <div className="reveal flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="/contact"
-            className="inline-block rounded-full bg-white px-8 py-4 text-lg font-semibold text-yellow-700 shadow hover:scale-105 transition"
+            className="inline-block rounded-full bg-white px-8 py-4 text-lg font-semibold text-blue-700 shadow hover:scale-105 transition"
           >
             Get Free Quote
           </a>
           <a
             href="/services"
-            className="inline-block rounded-full border-2 border-white px-8 py-4 text-lg font-semibold text-white hover:bg-white hover:text-yellow-700 transition"
+            className="inline-block rounded-full border-2 border-white px-8 py-4 text-lg font-semibold text-white hover:bg-white hover:text-blue-700 transition"
           >
             View Services
           </a>
         </div>
       </section>
-
       <Footer />
     </>
   )

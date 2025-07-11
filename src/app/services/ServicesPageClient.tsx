@@ -624,3 +624,139 @@ export default function ServicesPage() {
     </>
   )
 }
+
+
+
+
+// "use client";
+
+// import React from 'react';
+// import Image from 'next/image';
+// import NavBar from '../../../components/NavBar';
+// import Footer from '../../../components/Footer';
+
+// const services = [
+//   "Complete Renewable Energy Solutions",
+//   "Engineering, Procurement & Construction (EPC)",
+//   "Site Evaluation & Feasibility Analysis",
+//   "Smart Energy System Design",
+//   "High‑Quality Procurement",
+//   "Expert Construction Management",
+//   "Ongoing Maintenance & Support",
+//   "Advanced Performance Monitoring",
+// ];
+
+// const rows = [
+//   {
+//     img: "https://media.istockphoto.com/id/1473638950/photo/technicians-carrying-photovoltaic-solar-module-while-installing-solar-panel-system-on-roof-of.jpg?s=612x612&w=0&k=20&c=BHP3woa9yO0Em-dbAOkDSAy1x78D2wpXaKV9pOH18CU=",
+//     title: "Preventive Maintenance & 24/7 Monitoring",
+//   },
+//   {
+//     img: "https://www.shutterstock.com/image-photo/solar-energy-factory-warehouse-building-600nw-2517264391.jpg",
+//     title: "Energy Yield Optimization",
+//   },
+//   {
+//     img: "https://media.istockphoto.com/id/2137937205/photo/indian-worker-installing-solar-panels-on-roof-of-house-maintenance-of-photovoltaic-panel.jpg?s=612x612&w=0&k=20&c=EqdLVCyE0Jqa0kfTvdAK0nxFyurBLmRcpuliphRosdw=",
+//     title: "Guaranteed System Performance",
+//   },
+//   {
+//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9glqqIkNBdlhazCsZQCMKbtxUYIHRDeaLEg&s",
+//     title: "Rapid Response for Repairs",
+//   },
+//   {
+//     img: "https://claroenergy.in/wp-content/uploads/2017/11/rooftop-benefit-1.jpg",
+//     title: "Spare Parts Replacement (First 5 Years)",
+//   },
+//   {
+//     img: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9vZnRvcCUyMHNvbGFyfGVufDB8fDB8fHww",
+//     title: "Custom Data Services",
+//   },
+// ];
+
+// export default function Service() {
+//   return (
+//     <>
+//     <NavBar />
+//       <div className="bg-white text-gray-900">
+//         {/* Hero */}
+//         <div className="relative flex items-center justify-center h-48 md:h-64">
+//           <div className="absolute inset-0">
+//             <Image
+//               src="https://img.freepik.com/free-photo/solar-panels-roof-solar-cell_335224-1324.jpg?semt=ais_hybrid&w=740"
+//               alt="Solar Panels"
+//               fill
+//               className="object-cover"
+//             />
+//             <div className="absolute inset-0 bg-blue-900 bg-opacity-60" />
+//           </div>
+//           <div className="relative z-10 px-4 text-center text-white">
+//             <h2 className="text-3xl font-semibold md:text-4xl">
+//               Our Services
+//             </h2>
+//             <p className="mt-2 max-w-2xl text-sm md:text-base">
+//               At DMAX Reinfra LLP, we provide complete renewable energy solutions,
+//               including solar, wind, and hybrid systems, ensuring efficient and
+//               sustainable execution from start to finish.
+//             </p>
+//           </div>
+//         </div>
+
+//         {/* Services List */}
+//         <div className="container mx-auto max-w-7xl px-4 py-8">
+//           <h3 className="mb-6 text-center text-3xl font-bold">
+//             What We Offer
+//           </h3>
+//           <div className="flex flex-wrap -mx-2">
+//             {services.map((service, idx) => (
+//               <div
+//                 key={idx}
+//                 className="w-full px-2 mb-4 sm:w-1/2 lg:w-1/2"
+//               >
+//                 <button className="flex w-full items-center justify-between rounded bg-blue-800 px-4 py-3 text-white transition hover:bg-blue-900">
+//                   <span className="font-medium">
+//                     {idx + 1}. {service}
+//                   </span>
+//                   <span className="text-xl font-bold">&gt;</span>
+//                 </button>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+
+//       <div className="container mx-auto max-w-7xl px-4 py-8">
+//         <h1 className="mb-5 text-center text-3xl font-bold">
+//           Operations & Maintenance (O&M) contracts
+//         </h1>
+//         <p className="mx-auto mb-10 max-w-7xl text-center text-lg font-semibold text-gray-700">
+//           To ensure your renewable energy system runs efficiently, we offer
+//           Operations & Maintenance (O&M) contracts tailored to your requirements.
+//           Our goal is to maximize uptime and optimize energy production.
+//         </p>
+//         <div className="w-full table-auto border border-gray-300">
+//           {rows.map((row, i) => (
+//             <div
+//               key={i}
+//               className="flex items-center border-b last:border-b-0"
+//             >
+//               <div className="w-1/3">
+//                 <div className="relative h-24 w-full">
+//                   <Image
+//                     src={row.img}
+//                     alt={row.title}
+//                     fill
+//                     className="object-cover"
+//                   />
+//                 </div>
+//               </div>
+//               <div className="w-2/3 p-4">
+//                 <span className="text-2xl">{row.title}</span>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//       <Footer />
+//     </>
+//   );
+// }

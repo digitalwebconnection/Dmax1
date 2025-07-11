@@ -1,21 +1,20 @@
 "use client"
-
+import { useEffect, useState } from "react"
 import type React from "react"
-import { useEffect, useState, type FormEvent } from "react"
 import NavBar from "../../../components/NavBar"
 import Footer from "../../../components/Footer"
-import { Phone, Mail, MapPin, Clock } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, MessageSquare, ChevronDown, ChevronUp } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
 
-/** Reveal-on-scroll hook */
+/* Reveal animation hook */
 function useReveal() {
   useEffect(() => {
     gsap.utils.toArray<HTMLElement>(".reveal").forEach((el) => {
       gsap.from(el, {
-        y: 50,
+        y: 60,
         opacity: 0,
         duration: 0.8,
         ease: "power3.out",
@@ -27,244 +26,487 @@ function useReveal() {
 
 export default function ContactPage() {
   useReveal()
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    subject: "",
+    projectType: "",
+    location: "",
     message: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
 
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle")
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     })
   }
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setStatus("sending")
-    // Handle form submission here
-    console.log("Form submitted:", formData)
-    // TODO: replace with real API call
-    await new Promise((r) => setTimeout(r, 1000))
-    setStatus("sent")
-    alert("Thank you for your message! We will get back to you soon.")
-    setTimeout(() => {
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      })
-      setStatus("idle")
-    }, 2000)
+    setIsSubmitting(true)
+
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
+    setIsSubmitting(false)
+    setIsSubmitted(true)
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      projectType: "",
+      location: "",
+      message: "",
+    })
   }
+
+  const contactMethods = [
+    {
+      icon: Phone,
+      title: "Call Us",
+      description: "Speak with our solar experts",
+      contact: "+91 98765 43210",
+      action: "tel:+919876543210",
+    },
+    {
+      icon: Mail,
+      title: "Email Us",
+      description: "Get detailed information",
+      contact: "info@dmaxsolar.com",
+      action: "mailto:info@dmaxsolar.com",
+    },
+    {
+      icon: MessageSquare,
+      title: "Live Chat",
+      description: "Instant support available",
+      contact: "Chat Now",
+      action: "#",
+    },
+  ]
+
+  const offices = [
+    {
+      city: "Mumbai",
+      address: "123 Solar Street, Andheri East, Mumbai - 400069",
+      phone: "+91 98765 43210",
+      email: "mumbai@dmaxsolar.com",
+      hours: "Mon-Sat: 9:00 AM - 6:00 PM",
+    },
+    {
+      city: "Pune",
+      address: "456 Green Avenue, Baner, Pune - 411045",
+      phone: "+91 98765 43211",
+      email: "pune@dmaxsolar.com",
+      hours: "Mon-Sat: 9:00 AM - 6:00 PM",
+    },
+    {
+      city: "Bangalore",
+      address: "789 Tech Park Road, Whitefield, Bangalore - 560066",
+      phone: "+91 98765 43212",
+      email: "bangalore@dmaxsolar.com",
+      hours: "Mon-Sat: 9:00 AM - 6:00 PM",
+    },
+  ]
+
+  const faqs = [
+    {
+      question: "How long does a solar installation take?",
+      answer:
+        "Typically, residential installations take 1-3 days, while commercial projects can take 1-4 weeks depending on the size and complexity. We provide a detailed timeline during the consultation.",
+    },
+    {
+      question: "What is the warranty on solar panels?",
+      answer:
+        "We offer 25-year performance warranty on solar panels and 10-year product warranty. Inverters come with 5-10 year warranty depending on the brand and model.",
+    },
+    {
+      question: "How much can I save on electricity bills?",
+      answer:
+        "Savings depend on your current consumption, system size, and local electricity rates. Most customers see 50-90% reduction in their electricity bills. We provide detailed savings projections during consultation.",
+    },
+    {
+      question: "Do you provide financing options?",
+      answer:
+        "Yes, we offer various financing options including solar loans, EMI plans, and lease options. We work with leading banks and financial institutions to provide competitive rates.",
+    },
+    {
+      question: "What maintenance is required for solar panels?",
+      answer:
+        "Solar panels require minimal maintenance. Regular cleaning and annual inspections are recommended. We offer comprehensive maintenance packages to ensure optimal performance.",
+    },
+    {
+      question: "Can I install solar panels on any type of roof?",
+      answer:
+        "Solar panels can be installed on most roof types including concrete, tile, and metal roofs. Our engineers assess roof suitability during the site survey and recommend the best mounting solution.",
+    },
+  ]
 
   return (
     <>
       <NavBar />
 
-      {/* HERO */}
-      <header className="relative h-64 overflow-hidden bg-gradient-to-br from-yellow-50 to-orange-100">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1561154464-1f54c0e1d6f1?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-20" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-6">
-          <h1 className="text-4xl font-extrabold text-gray-900">Contact DMAX Solar</h1>
-          <p className="mt-2 text-lg text-gray-600">
-            Ready to start your solar journey? Get in touch with our experts today
-          </p>
-        </div>
-      </header>
-
-      {/* INFO CARDS */}
-      <section className="mx-auto max-w-5xl px-6 py-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {[
-          {
-            icon: <MapPin size={32} className="text-yellow-600" />,
-            label: "Office Address",
-            detail: "123 Solar Street, Pune, India",
-          },
-          {
-            icon: <Phone size={32} className="text-yellow-600" />,
-            label: "Phone",
-            detail: "+91 22 1234 5678",
-          },
-          {
-            icon: <Mail size={32} className="text-yellow-600" />,
-            label: "Email",
-            detail: "contact@dmaxsolar.com",
-          },
-          {
-            icon: <Clock size={32} className="text-yellow-600" />,
-            label: "Business Hours",
-            detail: "Mon-Fri 8AM-6PM, Sat 9AM-4PM",
-          },
-        ].map(({ icon, label, detail }) => (
-          <div
-            key={label}
-            className="reveal flex flex-col items-center text-center p-6 rounded-xl shadow-md hover:shadow-lg transition bg-white border border-yellow-100"
-          >
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-yellow-50">{icon}</div>
-            <h3 className="font-semibold text-lg text-gray-900">{label}</h3>
-            <p className="mt-1 text-gray-600 text-sm">{detail}</p>
+      {/* HERO SECTION */}
+      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h1>
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Ready to start your solar journey? Our experts are here to help you every step of the way. Get a free
+              consultation and personalized solar solution for your needs.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#contact-form"
+                className="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors"
+              >
+                Get Free Quote
+              </a>
+              <a
+                href="tel:+919876543210"
+                className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-900 transition-colors"
+              >
+                Call Now
+              </a>
+            </div>
           </div>
-        ))}
+        </div>
       </section>
 
-      {/* CONTACT FORM AND INFO */}
-      <section className="py-20 bg-white">
+      {/* CONTACT METHODS */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {contactMethods.map((method, index) => (
+              <div
+                key={index}
+                className="reveal text-center p-6 bg-blue-50 rounded-xl hover:shadow-lg transition-shadow"
+              >
+                <method.icon size={48} className="mx-auto mb-4 text-blue-900" />
+                <h3 className="text-xl font-bold text-blue-900 mb-2">{method.title}</h3>
+                <p className="text-gray-600 mb-4">{method.description}</p>
+                <a
+                  href={method.action}
+                  className="inline-block bg-blue-900 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-800 transition-colors"
+                >
+                  {method.contact}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT FORM & INFO */}
+      <section id="contact-form" className="py-20 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="reveal text-2xl font-bold mb-6 text-gray-900">Send Us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="reveal grid gap-4 sm:grid-cols-2">
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your full name"
-                    className="w-full rounded-lg border border-yellow-200 px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
-                  />
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="your@email.com"
-                    className="w-full rounded-lg border border-yellow-200 px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
-                  />
+            {/* CONTACT FORM */}
+            <div className="reveal">
+              <h2 className="text-3xl font-bold text-blue-900 mb-6">Send Us a Message</h2>
+              <p className="text-gray-600 mb-8">
+                Fill out the form below and our solar experts will get back to you within 24 hours with a personalized
+                solution.
+              </p>
+
+              {isSubmitted ? (
+                <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center">
+                  <CheckCircle size={48} className="mx-auto mb-4 text-green-600" />
+                  <h3 className="text-xl font-bold text-green-800 mb-2">Message Sent Successfully!</h3>
+                  <p className="text-green-700">
+                    Thank you for your interest in DMAX Solar. Our team will contact you within 24 hours.
+                  </p>
                 </div>
-                <div className="reveal grid gap-4 sm:grid-cols-2">
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="(555) 123-4567"
-                    className="w-full rounded-lg border border-yellow-200 px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
-                  />
-                  <input
-                    id="subject"
-                    name="subject"
-                    type="text"
-                    required
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="How can we help?"
-                    className="w-full rounded-lg border border-yellow-200 px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
-                  />
-                </div>
-                <div className="reveal">
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell us about your solar energy needs..."
-                    rows={5}
-                    className="w-full rounded-lg border border-yellow-200 px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
-                  />
-                </div>
-                <div className="reveal text-center">
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Enter your full name"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Enter your email"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                        Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        required
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Enter your phone number"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 mb-2">
+                        Project Type
+                      </label>
+                      <select
+                        id="projectType"
+                        name="projectType"
+                        value={formData.projectType}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      >
+                        <option value="">Select project type</option>
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="utility">Utility Scale</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+                      Location
+                    </label>
+                    <input
+                      type="text"
+                      id="location"
+                      name="location"
+                      value={formData.location}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Enter your city/location"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Tell us about your solar requirements..."
+                    />
+                  </div>
+
                   <button
                     type="submit"
-                    disabled={status === "sending"}
-                    className="w-full rounded-full bg-yellow-500 px-8 py-3 text-white font-semibold shadow hover:bg-yellow-600 transition disabled:opacity-50"
+                    disabled={isSubmitting}
+                    className="w-full bg-blue-900 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                   >
-                    {status === "sent" ? "Message Sent!" : status === "sending" ? "Sending…" : "Send Message"}
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={20} className="mr-2" />
+                        Send Message
+                      </>
+                    )}
                   </button>
-                </div>
-              </form>
+                </form>
+              )}
             </div>
 
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <div className="reveal">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-                <p className="text-gray-600 mb-8">
-                  Our team of solar experts is ready to help you make the switch to clean, renewable energy. Contact us
-                  today to schedule your free consultation.
-                </p>
-              </div>
+            {/* CONTACT INFO */}
+            <div className="reveal">
+              <h2 className="text-3xl font-bold text-blue-900 mb-6">Get In Touch</h2>
+              <p className="text-gray-600 mb-8">
+                Have questions? We&apos;re here to help. Reach out to us through any of the following channels.
+              </p>
 
-              <div className="reveal space-y-6">
+              <div className="space-y-6 mb-8">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-yellow-100 p-3 rounded-full">
-                    <Phone className="h-6 w-6 text-yellow-600" />
-                  </div>
+                  <Phone size={24} className="text-blue-900 mt-1" />
                   <div>
                     <h3 className="font-semibold text-gray-900">Phone</h3>
-                    <p className="text-gray-600">+91 22 1234 5678</p>
-                    <p className="text-sm text-gray-500">Mon-Fri 8AM-6PM, Sat 9AM-4PM</p>
+                    <p className="text-gray-600">+91 98765 43210</p>
+                    <p className="text-sm text-gray-500">Mon-Sat: 9:00 AM - 6:00 PM</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-yellow-100 p-3 rounded-full">
-                    <Mail className="h-6 w-6 text-yellow-600" />
-                  </div>
+                  <Mail size={24} className="text-blue-900 mt-1" />
                   <div>
                     <h3 className="font-semibold text-gray-900">Email</h3>
-                    <p className="text-gray-600">contact@dmaxsolar.com</p>
+                    <p className="text-gray-600">info@dmaxsolar.com</p>
                     <p className="text-sm text-gray-500">We&apos;ll respond within 24 hours</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-yellow-100 p-3 rounded-full">
-                    <MapPin className="h-6 w-6 text-yellow-600" />
-                  </div>
+                  <MapPin size={24} className="text-blue-900 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-gray-900">Office</h3>
+                    <h3 className="font-semibold text-gray-900">Head Office</h3>
                     <p className="text-gray-600">
-                      123 Solar Street
+                      123 Solar Street, Andheri East
                       <br />
-                      Pune, Maharashtra 411001
+                      Mumbai - 400069, India
                     </p>
-                    <p className="text-sm text-gray-500">Visit our showroom</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <Clock size={24} className="text-blue-900 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Business Hours</h3>
+                    <p className="text-gray-600">Monday - Saturday: 9:00 AM - 6:00 PM</p>
+                    <p className="text-gray-600">Sunday: Closed</p>
                   </div>
                 </div>
               </div>
 
-              {/* Emergency Contact */}
-              <div className="reveal bg-yellow-100 border border-yellow-200 rounded-xl p-6">
-                <h3 className="font-semibold text-gray-900 mb-2">Emergency Service</h3>
-                <p className="text-gray-600 mb-2">For urgent solar system issues, call our 24/7 emergency line:</p>
-                <p className="font-semibold text-yellow-600">+91 99999 SOLAR</p>
+              {/* QUICK STATS */}
+              <div className="bg-white p-6 rounded-xl shadow-sm">
+                <h3 className="font-bold text-blue-900 mb-4">Why Choose Us?</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-900">1200+</div>
+                    <div className="text-sm text-gray-600">Happy Customers</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-900">400+</div>
+                    <div className="text-sm text-gray-600">MWp Installed</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-900">24hrs</div>
+                    <div className="text-sm text-gray-600">Response Time</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-900">25yr</div>
+                    <div className="text-sm text-gray-600">Warranty</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* MAP SECTION */}
-      <section className="py-20 bg-gray-50">
+      {/* OFFICE LOCATIONS */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="reveal text-3xl font-bold text-gray-900 mb-4">Visit Our Showroom</h2>
-            <p className="reveal text-xl text-gray-600">See our solar solutions in person and speak with our experts</p>
+          <div className="text-center mb-16">
+            <h2 className="reveal text-3xl font-bold text-blue-900 mb-4">Our Office Locations</h2>
+            <p className="reveal text-xl text-gray-600">Visit us at any of our offices across India</p>
           </div>
 
-          <div className="reveal bg-gray-200 h-96 rounded-lg flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-500">Interactive Map Placeholder</p>
-              <p className="text-sm text-gray-400">123 Solar Street, Pune, Maharashtra 411001</p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {offices.map((office, index) => (
+              <div key={index} className="reveal bg-blue-50 p-6 rounded-xl">
+                <h3 className="text-xl font-bold text-blue-900 mb-4">{office.city}</h3>
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <MapPin size={16} className="text-blue-900 mt-1" />
+                    <p className="text-gray-600 text-sm">{office.address}</p>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Phone size={16} className="text-blue-900" />
+                    <p className="text-gray-600 text-sm">{office.phone}</p>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Mail size={16} className="text-blue-900" />
+                    <p className="text-gray-600 text-sm">{office.email}</p>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Clock size={16} className="text-blue-900" />
+                    <p className="text-gray-600 text-sm">{office.hours}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section className="py-20 bg-blue-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="reveal text-3xl font-bold text-blue-900 mb-4">Frequently Asked Questions</h2>
+            <p className="reveal text-xl text-gray-600">Get answers to common questions about solar installations</p>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="reveal bg-white rounded-xl shadow-sm">
+                <button
+                  onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 rounded-xl transition-colors"
+                >
+                  <h3 className="font-semibold text-blue-900">{faq.question}</h3>
+                  {expandedFaq === index ? (
+                    <ChevronUp size={20} className="text-blue-900" />
+                  ) : (
+                    <ChevronDown size={20} className="text-blue-900" />
+                  )}
+                </button>
+                {expandedFaq === index && (
+                  <div className="px-6 pb-4">
+                    <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-800 text-white text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="reveal text-3xl font-bold mb-4">Ready to Go Solar?</h2>
+          <p className="reveal text-xl text-blue-100 mb-8">
+            Join thousands of satisfied customers who have made the switch to clean, renewable energy.
+          </p>
+          <div className="reveal flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#contact-form"
+              className="inline-block bg-white text-blue-900 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition-colors"
+            >
+              Get Free Quote
+            </a>
+            <a
+              href="/projects"
+              className="inline-block border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-900 transition-colors"
+            >
+              View Our Work
+            </a>
           </div>
         </div>
       </section>

@@ -1,7 +1,18 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   images: {
-    domains: ['images.unsplash.com',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+        pathname: '/**',          // allow every path under that host
+      },],
+    domains: [ "img.freepik.com",
+      "media.istockphoto.com",
+      "www.shutterstock.com",
+      "encrypted-tbn0.gstatic.com",
+      "claroenergy.in",
+      "images.unsplash.com",
       "img.freepik.com",
       "thumbs.dreamstime.com",
       "encrypted-tbn0.gstatic.com",
