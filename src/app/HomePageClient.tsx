@@ -113,12 +113,12 @@ export default function HomePageClient() {
     {
       title: 'Renewable Energy Solutions',
       desc: 'Explore green sources of energy and solutions to achieve a sustainable future.',
-      img: '/blog1.jpg',
+      img: 'https://media.istockphoto.com/id/1265041683/photo/solar-electric-panels.jpg?s=612x612&w=0&k=20&c=JXuwZpwk__-AEowQzrMuJe-fG2Qux4Y9uHTA3fwDAGw=',
     },
     {
       title: 'Introduction to Solar Energy',
       desc: 'Learn the basics of solar technology, its advantages, and applications worldwide.',
-      img: '/blog2.jpg',
+      img: 'https://media.istockphoto.com/id/1022509506/photo/man-installing-solar-panels.jpg?s=612x612&w=0&k=20&c=4tlEmYdqZm4Y7xOD2KrOTzPSN_WbQLlDj1QMENA-i18=',
     },
     {
       title: 'Benefits of Solar Energy',
