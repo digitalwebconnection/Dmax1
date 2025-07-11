@@ -347,7 +347,7 @@ export default function HomePageClient() {
         {/* Blogs Section */}
         <section className="pt-24 pb-16 bg-[#003554] relative text-center">
           {/* Curved Top Shape */}
-          {/* <div className="absolute top-0 left-0 w-full h-32 bg-white rounded-b-[50%] z-0"></div> */}
+          <div className="absolute top-0 left-0 w-full h-32 bg-white rounded-t-[50%] z-0"></div>
 
           <h2 className="relative z-10 text-4xl font-bold mb-2">Blogs</h2>
           <p className="relative z-10 mb-8 text-sm uppercase tracking-wide">Recent Blogs</p>
