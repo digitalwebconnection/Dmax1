@@ -19,40 +19,6 @@ import "swiper/css"
 import NavBar from "../../components/NavBar"
 
 
-import { useEffect } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-
-gsap.registerPlugin(ScrollTrigger)
-
-export function useRevealServices() {
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray(".solar-service").forEach((el: any, index) => {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 60, scale: 0.95 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            delay: index * 0.1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 85%",
-            },
-          }
-        )
-      })
-    })
-
-    return () => ctx.revert()
-  }, [])
-}
-
-
 
 
 
@@ -261,27 +227,21 @@ export default function HomePageClient() {
       </section> */}
 
       {/* Services */}
-   <section id="services" className="px-4 py-20 mx-auto max-w-7xl md:px-8">
-  <h2 className="mb-12 text-3xl font-bold text-center reveal md:text-4xl">
-    Solar Services
-  </h2>
-
-  <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-    {services.map((s) => (
-      <div
-        key={s.title}
-        className="flex flex-col items-center p-8 transition-all duration-300 transform bg-white shadow-lg solar-service rounded-2xl group hover:-translate-y-2 hover:scale-105 hover:shadow-2xl"
-      >
-        <div className="text-5xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-          {s.icon}
+      <section id="services" className="px-4 py-20 mx-auto max-w-7xl md:px-8">
+        <h2 className="mb-12 text-3xl font-bold text-center reveal md:text-4xl">Solar Services</h2>
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((s) => (
+            <div
+              key={s.title}
+              className="flex flex-col items-center p-8 transition bg-white shadow-lg reveal rounded-2xl hover:-translate-y-1 hover:shadow-2xl"
+            >
+              <div className="text-5xl">{s.icon}</div>
+              <h3 className="mt-4 text-lg font-semibold text-center">{s.title}</h3>
+              <p className="mt-2 text-sm text-center text-gray-500">{s.desc}</p>
+            </div>
+          ))}
         </div>
-        <h3 className="mt-4 text-lg font-semibold text-center">{s.title}</h3>
-        <p className="mt-2 text-sm text-center text-gray-500">{s.desc}</p>
-      </div>
-    ))}
-  </div>
-</section>
-
+      </section>
 
       {/* Projects */}
       <section id="projects" className="py-20 bg-gray-100">
