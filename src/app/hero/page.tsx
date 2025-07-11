@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import type React from "react"
@@ -108,7 +109,7 @@ export default function TravelShowcase() {
       displayNextContent()
     }, 1000)
     return () => clearTimeout(timer)
-  }, [])
+  }, )
 
   const cssVariables = {
     "--img-current": `url(${currentDestination.img})`,
