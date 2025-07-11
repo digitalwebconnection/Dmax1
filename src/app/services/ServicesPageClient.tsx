@@ -95,7 +95,7 @@ export default function ServicesPage() {
       title: "Residential Solar",
       icon: Home,
       description: "Perfect solar solutions for your home",
-      color: "bg-blue-500",
+      color: "bg-blue-900",
       image: "/placeholder.svg?height=400&width=600",
     },
     {
@@ -103,7 +103,7 @@ export default function ServicesPage() {
       title: "Commercial Solar",
       icon: Building2,
       description: "Scalable solutions for businesses",
-      color: "bg-green-500",
+      color: "bg-blue-900",
       image: "/placeholder.svg?height=400&width=600",
     },
     {
@@ -111,7 +111,7 @@ export default function ServicesPage() {
       title: "Industrial Solar",
       icon: Factory,
       description: "Large-scale industrial installations",
-      color: "bg-purple-500",
+      color: "bg-blue-900",
       image: "/placeholder.svg?height=400&width=600",
     },
     {
@@ -119,7 +119,7 @@ export default function ServicesPage() {
       title: "Utility Scale",
       icon: Sun,
       description: "Mega solar farms and grid solutions",
-      color: "bg-orange-500",
+      color: "bg-blue-900",
       image: "/placeholder.svg?height=400&width=600",
     },
   ]
@@ -312,24 +312,24 @@ export default function ServicesPage() {
       description: "Handle all permits, approvals, and grid connection procedures",
       icon: CheckCircle,
     },
-    {
-      step: "04",
-      title: "Installation",
-      description: "Professional installation by certified technicians with safety protocols",
-      icon: Wrench,
-    },
-    {
-      step: "05",
-      title: "Commissioning",
-      description: "System testing, grid synchronization, and performance verification",
-      icon: Settings,
-    },
-    {
-      step: "06",
-      title: "Monitoring",
-      description: "Ongoing monitoring, maintenance, and performance optimization",
-      icon: BarChart3,
-    },
+    // {
+    //   step: "04",
+    //   title: "Installation",
+    //   description: "Professional installation by certified technicians with safety protocols",
+    //   icon: Wrench,
+    // },
+    // {
+    //   step: "05",
+    //   title: "Commissioning",
+    //   description: "System testing, grid synchronization, and performance verification",
+    //   icon: Settings,
+    // },
+    // {
+    //   step: "06",
+    //   title: "Monitoring",
+    //   description: "Ongoing monitoring, maintenance, and performance optimization",
+    //   icon: BarChart3,
+    // },
   ]
 
   return (
@@ -337,7 +337,7 @@ export default function ServicesPage() {
       <NavBar />
 
       {/* HERO SECTION */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-yellow-50 via-orange-50 to-yellow-100">
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-orange-50 to-blue-100">
         <div className="absolute inset-0">
           <Image
             src="/placeholder.svg?height=800&width=1200"
@@ -350,7 +350,7 @@ export default function ServicesPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6">
             Complete Solar
-            <span className="block text-yellow-600">Energy Solutions</span>
+            <span className="block text-blue-800">Energy Solutions</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">
             From residential rooftops to utility-scale solar farms, we provide end-to-end solar solutions tailored to
@@ -359,12 +359,12 @@ export default function ServicesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-4 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-full transition-all hover:scale-105 shadow-lg"
+              className="inline-flex items-center px-8 py-4 bg-blue-800 hover:bg-blue-800 text-white font-semibold rounded-full transition-all hover:scale-105 shadow-lg"
             >
               Get Free Quote
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
-            <button className="inline-flex items-center px-8 py-4 border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white font-semibold rounded-full transition-all">
+            <button className="inline-flex items-center px-8 py-4 border-2 border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white font-semibold rounded-full transition-all">
               <Calculator className="mr-2 h-5 w-5" />
               Calculate Savings
             </button>
@@ -390,8 +390,8 @@ export default function ServicesPage() {
                 onClick={() => setActiveTab(category.id)}
                 className={`flex items-center space-x-3 px-6 py-4 rounded-2xl font-semibold transition-all ${
                   activeTab === category.id
-                    ? "bg-yellow-500 text-white shadow-lg scale-105"
-                    : "bg-gray-100 text-gray-700 hover:bg-yellow-100"
+                    ? "bg-blue-900 text-white shadow-lg scale-105"
+                    : "bg-gray-100 text-gray-700 hover:bg-blue-100"
                 }`}
               >
                 <category.icon size={24} />
@@ -407,7 +407,7 @@ export default function ServicesPage() {
                 key={category.id}
                 className={`${activeTab === category.id ? "block" : "hidden"} transition-all duration-500`}
               >
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                   <div>
                     <div className={`inline-flex p-3 rounded-2xl ${category.color} text-white mb-4`}>
                       <category.icon size={32} />
@@ -415,12 +415,12 @@ export default function ServicesPage() {
                     <h3 className="text-3xl font-bold text-gray-900 mb-4">{category.title}</h3>
                     <p className="text-lg text-gray-600 mb-6">{category.description}</p>
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="text-center p-4 bg-yellow-50 rounded-lg">
-                        <div className="text-2xl font-bold text-yellow-600">1200+</div>
+                      <div className="text-center p-4 bg-blue-50 rounded-lg">
+                        <div className="text-2xl font-bold text-blue-800">1200+</div>
                         <div className="text-sm text-gray-600">Projects Completed</div>
                       </div>
                       <div className="text-center p-4 bg-green-50 rounded-lg">
-                        <div className="text-2xl font-bold text-green-600">25 Years</div>
+                        <div className="text-2xl font-bold text-blue-800">25 Years</div>
                         <div className="text-sm text-gray-600">Warranty</div>
                       </div>
                     </div>
@@ -443,8 +443,8 @@ export default function ServicesPage() {
                       className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2"
                     >
                       <div className="flex items-center mb-4">
-                        <div className="bg-yellow-100 p-3 rounded-xl mr-4">
-                          <service.icon className="h-6 w-6 text-yellow-600" />
+                        <div className="bg-blue-100 p-3 rounded-xl mr-4">
+                          <service.icon className="h-6 w-6 text-blue-800" />
                         </div>
                         <h4 className="text-lg font-semibold text-gray-900">{service.title}</h4>
                       </div>
@@ -487,8 +487,8 @@ export default function ServicesPage() {
                 key={index}
                 className="reveal bg-white rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300"
               >
-                <div className="bg-yellow-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <service.icon className="h-8 w-8 text-yellow-600" />
+                <div className="bg-blue-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <service.icon className="h-8 w-8 text-blue-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{service.title}</h3>
                 <p className="text-gray-600 text-sm mb-4">{service.description}</p>
@@ -516,8 +516,8 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (
               <div key={index} className="reveal text-center p-6">
-                <div className="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <benefit.icon className="h-8 w-8 text-yellow-600" />
+                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <benefit.icon className="h-8 w-8 text-blue-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
@@ -528,7 +528,7 @@ export default function ServicesPage() {
       </section>
 
       {/* PROCESS SECTION */}
-      <section className="py-20 bg-yellow-50">
+      <section className="py-20 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="reveal text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Process</h2>
@@ -541,18 +541,18 @@ export default function ServicesPage() {
             {processSteps.map((step, index) => (
               <div key={index} className="reveal relative">
                 <div className="bg-white rounded-2xl p-6 text-center shadow-sm hover:shadow-lg transition-all">
-                  <div className="bg-yellow-500 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+                  <div className="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
                     {step.step}
                   </div>
-                  <div className="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <step.icon className="h-8 w-8 text-yellow-600" />
+                  <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <step.icon className="h-8 w-8 text-blue-600" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
                   <p className="text-gray-600 text-sm">{step.description}</p>
                 </div>
                 {index < processSteps.length - 1 && (
                   <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                    <ArrowRight className="h-6 w-6 text-yellow-400" />
+                    <ArrowRight className="h-6 w-6 text-blue-400" />
                   </div>
                 )}
               </div>
@@ -562,38 +562,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CALCULATOR SECTION */}
-      <section className="py-20 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h2 className="reveal text-3xl md:text-4xl font-bold mb-4">Calculate Your Solar Savings</h2>
-          <p className="reveal text-xl mb-8">
-            See how much you can save with solar energy. Get instant estimates for your property.
-          </p>
-          <div className="reveal bg-white rounded-2xl p-8 text-gray-900 max-w-2xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Monthly Electricity Bill</label>
-                <input
-                  type="number"
-                  placeholder="₹5,000"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Property Type</label>
-                <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent">
-                  <option>Residential</option>
-                  <option>Commercial</option>
-                  <option>Industrial</option>
-                </select>
-              </div>
-            </div>
-            <button className="w-full mt-6 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
-              Calculate Savings
-            </button>
-          </div>
-        </div>
-      </section>
-
+   
       {/* CTA SECTION */}
       <section className="py-20 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -604,7 +573,7 @@ export default function ServicesPage() {
           <div className="reveal flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-4 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-full transition-all hover:scale-105"
+              className="inline-flex items-center px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-full transition-all hover:scale-105"
             >
               Get Free Consultation
               <ArrowRight className="ml-2 h-5 w-5" />

@@ -1,36 +1,36 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fffbeb; /* yellow-50 */
-  --foreground: #cfdef1; /* gray-800 */
-  --primary: #eab308; /* yellow-500 */
+  --background: #ffffff; /* yellow-50 */
+  --foreground: #2572d6; /* gray-800 */
+  --primary: #081fea; /* yellow-500 */
   --primary-foreground: #ffffff;
-  --secondary: #f59e0b; /* amber-500 */
+  --secondary: #0b1bf5; /* amber-500 */
   --secondary-foreground: #ffffff;
-  --accent: #fbbf24; /* amber-400 */
+  --accent: #2427fb; /* amber-400 */
   --accent-foreground: #9eb8db;
-  --muted: #fef3c7; /* yellow-100 */
+  --muted: #163791; /* yellow-100 */
   --muted-foreground: #6b7280; /* gray-500 */
-  --border: #fde68a; /* yellow-200 */
+  --border: #12499b; /* yellow-200 */
   --input: #ffffff;
-  --ring: #eab308; /* yellow-500 */
+  --ring: #1708ea; /* yellow-500 */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #ffffff; /* gray-800 */
     --foreground: #000000; /* gray-50 */
-    --primary: #fbbf24; /* amber-400 */
+    --primary: #0818a7; /* amber-400 */
     --primary-foreground: #1f2937;
-    --secondary: #f59e0b; /* amber-500 */
+    --secondary: #2e0bf5; /* amber-500 */
     --secondary-foreground: #1f2937;
-    --accent: #fcd34d; /* amber-300 */
+    --accent: #25189b; /* amber-300 */
     --accent-foreground: #1f2937;
     --muted: #374151; /* gray-700 */
     --muted-foreground: #9ca3af; /* gray-400 */
     --border: #4b5563; /* gray-600 */
     --input: #374151; /* gray-700 */
-    --ring: #fbbf24; /* amber-400 */
+    --ring: #05359e; /* amber-400 */
   }
 }
 
@@ -96,7 +96,7 @@ html {
 
 /* Solar-themed button styles */
 .btn-solar {
-  background: linear-gradient(135deg, #087dea, #f59e0b);
+  background: linear-gradient(135deg, #087dea, #041447);
   color: white;
   border: none;
   padding: 12px 24px;
