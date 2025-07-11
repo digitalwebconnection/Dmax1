@@ -107,6 +107,24 @@ export default function HomePageClient() {
     },
   ]
 
+
+    const blogs = [
+    {
+      title: 'Renewable Energy Solutions',
+      desc: 'Explore green sources of energy and solutions to achieve a sustainable future.',
+      img: '/blog1.jpg',
+    },
+    {
+      title: 'Introduction to Solar Energy',
+      desc: 'Learn the basics of solar technology, its advantages, and applications worldwide.',
+      img: '/blog2.jpg',
+    },
+    {
+      title: 'Benefits of Solar Energy',
+      desc: 'Understand why solar energy is one of the best long-term energy investments.',
+      img: '/blog3.jpg',
+    },
+  ]
   const projects = [
     { title: "Solar Startup Landing", img: "/projects/solar.jpg" },
     { title: "AI SaaS Dashboard", img: "/projects/ai-saas.jpg" },
