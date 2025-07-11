@@ -17,6 +17,7 @@ import { TextPlugin } from "gsap/TextPlugin"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 import NavBar from "../../components/NavBar"
+import Footer from "../../components/Footer"
 
 
 
@@ -108,7 +109,7 @@ export default function HomePageClient() {
   ]
 
 
-    const blogs = [
+  const blogs = [
     {
       title: 'Renewable Energy Solutions',
       desc: 'Explore green sources of energy and solutions to achieve a sustainable future.',
@@ -245,39 +246,39 @@ export default function HomePageClient() {
       </section> */}
 
 
-       <section className="flex justify-center py-12 bg-white">
-      <div className="flex flex-col gap-4 px-4 sm:flex-row sm:gap-0">
-        {/* Left Card */}
-        <div className="flex flex-col items-center justify-center p-6 border rounded-md w-64 sm:rounded-l-lg border-[#0A4D68]">
-          <div className="w-12 h-12 mb-4 bg-[#0A4D68] text-white rounded-full flex items-center justify-center text-xl">
-            {/* Example icon (flow chart) */}
-            <span>🗂️</span>
+      <section className="flex justify-center py-12 bg-white">
+        <div className="flex flex-col gap-8 px-4 sm:flex-row sm:gap-0">
+          {/* Left Card */}
+          <div className="flex flex-col items-center justify-center p-6 border rounded-md w-64 sm:rounded-l-lg border-[#0A4D68]">
+            <div className="w-12 h-12 mb-4 bg-[#0A4D68] text-white rounded-full flex items-center justify-center text-xl">
+              {/* Example icon (flow chart) */}
+              <span>🗂️</span>
+            </div>
+            <p className="text-2xl font-semibold text-gray-800">20+</p>
+            <p className="text-sm text-gray-600">Projects</p>
           </div>
-          <p className="text-2xl font-semibold text-gray-800">20+</p>
-          <p className="text-sm text-gray-600">Projects</p>
-        </div>
 
-        {/* Center Card (highlighted) */}
-        <div className="flex flex-col items-center justify-center p-6 w-64 bg-[#0A4D68] text-white shadow-xl z-10 sm:rounded-none sm:border-y sm:border-t-0 sm:border-b-0">
-          <div className="w-12 h-12 mb-4 bg-white text-[#0A4D68] rounded-full flex items-center justify-center text-xl">
-            {/* Example icon (capacity) */}
-            <span>📦</span>
+          {/* Center Card (highlighted) */}
+          <div className="flex flex-col items-center justify-center p-6 w-64 bg-[#0A4D68] text-white shadow-xl z-10 sm:rounded-none sm:border-y sm:border-t-0 sm:border-b-0">
+            <div className="w-12 h-12 mb-4 bg-white text-[#0A4D68] rounded-full flex items-center justify-center text-xl">
+              {/* Example icon (capacity) */}
+              <span>📦</span>
+            </div>
+            <p className="text-2xl font-semibold">78 MW+</p>
+            <p className="text-sm">Total Capacity</p>
           </div>
-          <p className="text-2xl font-semibold">78 MW+</p>
-          <p className="text-sm">Total Capacity</p>
-        </div>
 
-        {/* Right Card */}
-        <div className="flex flex-col items-center justify-center p-6 border rounded-md w-64 sm:rounded-r-lg border-[#0A4D68]">
-          <div className="w-12 h-12 mb-4 bg-[#0A4D68] text-white rounded-full flex items-center justify-center text-xl">
-            {/* Example icon (employees) */}
-            <span>👥</span>
+          {/* Right Card */}
+          <div className="flex flex-col items-center justify-center p-6 border rounded-md w-64 sm:rounded-r-lg border-[#0A4D68]">
+            <div className="w-12 h-12 mb-4 bg-[#0A4D68] text-white rounded-full flex items-center justify-center text-xl">
+              {/* Example icon (employees) */}
+              <span>👥</span>
+            </div>
+            <p className="text-2xl font-semibold text-gray-800">70+</p>
+            <p className="text-sm text-gray-600">Employees</p>
           </div>
-          <p className="text-2xl font-semibold text-gray-800">70+</p>
-          <p className="text-sm text-gray-600">Employees</p>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* Services */}
       <section id="services" className="px-4 py-20 mx-auto max-w-7xl md:px-8">
@@ -342,6 +343,48 @@ export default function HomePageClient() {
         </div>
       </section>
 
+      <main className="bg-[#003554] text-white">
+        {/* Blogs Section */}
+        <section className="pt-24 pb-16 bg-[#003554] relative text-center">
+          {/* Curved Top Shape */}
+          <div className="absolute top-0 left-0 w-full h-32 bg-white rounded-b-[50%] z-0"></div>
+
+          <h2 className="relative z-10 text-4xl font-bold mb-2">Blogs</h2>
+          <p className="relative z-10 mb-8 text-sm uppercase tracking-wide">Recent Blogs</p>
+
+          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 max-w-6xl mx-auto">
+            {blogs.map((blog, i) => (
+              <div key={i} className="bg-white text-black rounded-lg overflow-hidden shadow-md">
+                <div className="h-48 relative">
+                  <Image src={blog.img} alt={blog.title} fill className="object-cover" />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold">{blog.title}</h3>
+                  <p className="text-sm mt-2">{blog.desc}</p>
+                  <a href="#" className="mt-3 inline-block text-blue-600 font-medium hover:underline">
+                    Read More
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Clients Section */}
+        <section className="pt-16 pb-24 bg-[#004466] text-center">
+          <h2 className="text-3xl font-bold mb-4">Our Clients</h2>
+          <p className="max-w-2xl mx-auto mb-10 text-gray-300">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-6 px-4 max-w-6xl mx-auto">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <div key={i} className="h-20 bg-gray-300 rounded-lg animate-pulse" />
+            ))}
+          </div>
+        </section>
+      </main>
+
       {/* Contact CTA */}
       <section id="contact" className="max-w-3xl px-4 py-24 mx-auto text-center reveal md:px-8">
         <h2 className="text-3xl font-bold md:text-4xl">Have a project in mind?</h2>
@@ -355,6 +398,7 @@ export default function HomePageClient() {
       </section>
 
       {/* Footer */}
+      <Footer />
       <footer className="py-10 text-sm text-center text-gray-400 bg-gray-900">
         <p>© {new Date().getFullYear()} Vahlay Consulting. All rights reserved.</p>
       </footer>
