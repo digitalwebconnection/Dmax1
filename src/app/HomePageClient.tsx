@@ -60,16 +60,16 @@ function usePowerPointAnimations() {
       })
 
       // Typewriter effect for title
-      if (titleRef.current) {
-        tl.from(titleRef.current, {
-          duration: 0.1,
-          opacity: 0,
-        }).to(titleRef.current, {
-          duration: 2,
-          text: "Power Your Home, Sustain Our Planet: Go Solar Today",
-          ease: "none",
-        })
-      }
+      // if (titleRef.current) {
+      //   tl.from(titleRef.current, {
+      //     duration: 0.1,
+      //     opacity: 0,
+      //   }).to(titleRef.current, {
+      //     duration: 2,
+      //     text: "Power Your Home, Sustain Our Planet: Go Solar Today",
+      //     ease: "none",
+      //   })
+      // }
 
       // Slide in subtitle from right
       if (subtitleRef.current) {
@@ -148,7 +148,7 @@ export default function HomePageClient() {
   const textRef = useRef<HTMLDivElement | null>(null)
 
   /* PowerPoint animations */
-  const { sectionRef, titleRef, subtitleRef, cardsRef, statsRef } = usePowerPointAnimations()
+  // const { sectionRef, titleRef, subtitleRef, cardsRef, statsRef } = usePowerPointAnimations()
 
   /* pin + synced shrink animations */
   useEffect(() => {
@@ -194,10 +194,14 @@ export default function HomePageClient() {
     },
     {
       title: "Brand Strategy",
-      icon: "/icons/compass.svg",
+      icon: "https://dn5z2jafg7hv0.cloudfront.net/blog/wp-content/uploads/2024/07/14160655/latest-solar-panel-technology-2024.jpg",
       desc: "Positioning, messaging & visual identity for standout brands.",
     },
-    { title: "E-commerce", icon: "/icons/cart.svg", desc: "Shopify & headless commerce that converts at scale." },
+    {
+      title: "E-commerce",
+      icon: "https://images.unsplash.com/photo-1509391366360-2e959784a276?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c29sYXIlMjBwYW5lbHxlbnwwfHwwfHx8MA%3D%3D",
+      desc: "Shopify & headless commerce that converts at scale."
+    },
   ]
 
   const projects = [
@@ -216,12 +220,12 @@ export default function HomePageClient() {
   ]
 
   /* PowerPoint-style section data */
-  const pptFeatures = [
-    { title: "Slide Transitions", icon: "🎬", desc: "Smooth transitions between content sections" },
-    { title: "Slide Transitions", icon: "🎬", desc: "Smooth transitions between content sections" },
-    { title: "Slide Transitions", icon: "🎬", desc: "Smooth transitions between content sections" },
-    { title: "Bounce & Scale", icon: "🎯", desc: "Dynamic scaling and bouncing effects" },
-  ]
+  // const pptFeatures = [
+  //   { title: "Slide Transitions", icon: "🎬", desc: "Smooth transitions between content sections" },
+  //   { title: "Slide Transitions", icon: "🎬", desc: "Smooth transitions between content sections" },
+  //   { title: "Slide Transitions", icon: "🎬", desc: "Smooth transitions between content sections" },
+  //   { title: "Bounce & Scale", icon: "🎯", desc: "Dynamic scaling and bouncing effects" },
+  // ]
 
   return (
     <>
@@ -262,20 +266,20 @@ export default function HomePageClient() {
       </section>
 
       {/* PowerPoint-Style Animated Section */}
-      <section ref={sectionRef} className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
-        <div className="mx-auto max-w-7xl px-4 md:px-8">
+      {/* <section ref={sectionRef} className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20"> */}
+        {/* <div className="mx-auto max-w-7xl px-4 md:px-8"> */}
           {/* Animated Title with Typewriter Effect */}
-          <h2 ref={titleRef} className="mb-4 text-center text-4xl font-bold text-gray-800 md:text-5xl">
+          {/* <h2 ref={titleRef} className="mb-4 text-center text-4xl font-bold text-gray-800 md:text-5xl"> */}
             {/* Text will be animated via GSAP TextPlugin */}
-          </h2>
+          {/* </h2> */}
 
           {/* Animated Subtitle */}
-          <p ref={subtitleRef} className="mb-16 text-center text-xl text-gray-600">
+          {/* <p ref={subtitleRef} className="mb-16 text-center text-xl text-gray-600">
             Experience presentation-quality animations on the web
-          </p>
+          </p> */}
 
           {/* Animated Feature Cards */}
-          <div ref={cardsRef} className="mb-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {/* <div ref={cardsRef} className="mb-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {pptFeatures.map((feature) => (
               <div
                 key={feature.title}
@@ -289,10 +293,10 @@ export default function HomePageClient() {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
 
           {/* Animated Stats Counter */}
-          <div ref={statsRef} className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          {/* <div ref={statsRef} className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {[
               { number: 250, label: "Animations", suffix: "+" },
               { number: 98, label: "Satisfaction", suffix: "%" },
@@ -307,17 +311,17 @@ export default function HomePageClient() {
                 <div className="text-sm uppercase tracking-wide text-gray-500">{stat.label}</div>
               </div>
             ))}
-          </div>
+          </div> */}
 
           {/* Interactive Demo Button */}
-          <div className="mt-16 text-center">
+          {/* <div className="mt-16 text-center">
             <button className="group relative overflow-hidden rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
               <span className="relative z-10">See More Effects</span>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Services */}
       <section id="services" className="mx-auto max-w-7xl px-4 py-20 md:px-8">
