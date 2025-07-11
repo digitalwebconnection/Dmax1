@@ -6,7 +6,7 @@ module.exports = {
         protocol: 'https',
         hostname: 'images.pexels.com',
         pathname: '/**',          // allow every path under that host
-      },],
+      },],  
     domains: [ "img.freepik.com",
       "media.istockphoto.com",
       "www.shutterstock.com",

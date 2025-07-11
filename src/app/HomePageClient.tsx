@@ -18,6 +18,44 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 import NavBar from "../../components/NavBar"
 
+
+import { useEffect } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
+
+export function useRevealServices() {
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray(".solar-service").forEach((el: any, index) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 60, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            delay: index * 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+            },
+          }
+        )
+      })
+    })
+
+    return () => ctx.revert()
+  }, [])
+}
+
+
+
+
+
 gsap.registerPlugin(ScrollTrigger, TextPlugin)
 
 /* helper: fade+slide-up reveal for subsequent sections */
@@ -39,107 +77,6 @@ function useReveal(selector = ".reveal", y = 60) {
 }
 
 /* PowerPoint-style animations hook */
-function usePowerPointAnimations() {
-  const sectionRef = useRef<HTMLElement | null>(null)
-  const titleRef = useRef<HTMLHeadingElement | null>(null)
-  const subtitleRef = useRef<HTMLParagraphElement | null>(null)
-  const cardsRef = useRef<HTMLDivElement | null>(null)
-  const statsRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (!sectionRef.current) return
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 60%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
-        },
-      })
-
-      // Typewriter effect for title
-      // if (titleRef.current) {
-      //   tl.from(titleRef.current, {
-      //     duration: 0.1,
-      //     opacity: 0,
-      //   }).to(titleRef.current, {
-      //     duration: 2,
-      //     text: "Power Your Home, Sustain Our Planet: Go Solar Today",
-      //     ease: "none",
-      //   })
-      // }
-
-      // Slide in subtitle from right
-      if (subtitleRef.current) {
-        tl.from(
-          subtitleRef.current,
-          {
-            x: 100,
-            opacity: 0,
-            duration: 0.8,
-            ease: "back.out(1.7)",
-          },
-          "-=1.5",
-        )
-      }
-
-      // Staggered card animations (slide from different directions)
-      if (cardsRef.current) {
-        const cards = cardsRef.current.querySelectorAll(".ppt-card")
-        tl.from(
-          cards,
-          {
-            scale: 0,
-            rotation: 180,
-            opacity: 0,
-            duration: 0.6,
-            stagger: {
-              amount: 1.2,
-              from: "center",
-            },
-            ease: "back.out(1.7)",
-          },
-          "-=0.5",
-        )
-      }
-
-      // Counter animation for stats
-      if (statsRef.current) {
-        const statNumbers = statsRef.current.querySelectorAll(".stat-number")
-        tl.from(
-          statNumbers,
-          {
-            textContent: 0,
-            duration: 2,
-            ease: "power2.out",
-            snap: { textContent: 1 },
-            stagger: 0.2,
-          },
-          "-=1",
-        )
-
-        // Bounce effect for stat containers
-        tl.from(
-          statsRef.current.querySelectorAll(".stat-container"),
-          {
-            y: 50,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: "bounce.out",
-          },
-          "-=2",
-        )
-      }
-    })
-
-    return () => ctx.revert()
-  }, [])
-
-  return { sectionRef, titleRef, subtitleRef, cardsRef, statsRef }
-}
 
 export default function HomePageClient() {
   /* refs */
@@ -183,24 +120,24 @@ export default function HomePageClient() {
   /* dummy data (unchanged) */
   const services = [
     {
-      title: "Web Development",
-      icon: "https://www.investopedia.com/thmb/HNgIWqoqYesoBAo6zqWc9LiiWlg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1278948452-e1fdce3baef44af28f449ab36d6717f3.jpg",
-      desc: "Modern, performant websites & apps built with React / Next.js.",
+      title: "Solar Panel Installation",
+      icon: "🔧",
+      desc: "Complete rooftop and ground-mounted panel installation for homes and businesses.",
     },
     {
-      title: "Digital Marketing",
-      icon: "https://img.freepik.com/free-photo/solar-panels-meadow_1286-146.jpg?semt=ais_hybrid&w=740",
-      desc: "SEO, PPC & social campaigns that turn clicks into customers.",
+      title: "Inverter Solutions",
+      icon: "⚡",
+      desc: "Reliable solar inverters including on-grid, off-grid, and hybrid systems.",
     },
     {
-      title: "Brand Strategy",
-      icon: "https://dn5z2jafg7hv0.cloudfront.net/blog/wp-content/uploads/2024/07/14160655/latest-solar-panel-technology-2024.jpg",
-      desc: "Positioning, messaging & visual identity for standout brands.",
+      title: "Energy Monitoring",
+      icon: "📊",
+      desc: "Real-time monitoring apps to track energy generation, savings, and usage.",
     },
     {
-      title: "E-commerce",
-      icon: "https://images.unsplash.com/photo-1509391366360-2e959784a276?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c29sYXIlMjBwYW5lbHxlbnwwfHwwfHx8MA%3D%3D",
-      desc: "Shopify & headless commerce that converts at scale."
+      title: "Maintenance & Support",
+      icon: "🛠️",
+      desc: "Scheduled maintenance, cleaning, and 24/7 technical support for all systems.",
     },
   ]
 
@@ -233,7 +170,7 @@ export default function HomePageClient() {
       <NavBar />
 
       {/* Hero */}
-      <section ref={heroRef} className="relative h-screen w-full overflow-hidden">
+      <section ref={heroRef} className="relative w-full h-screen overflow-hidden">
         {/* Image */}
         <div ref={bgRef} className="absolute inset-0 z-10 will-change-transform">
           <Image src="/solar-panels-roof-solar-cell.jpg" alt="Solar roof" fill priority className="object-cover" />
@@ -241,24 +178,24 @@ export default function HomePageClient() {
         {/* Text behind image */}
         <div
           ref={textRef}
-          className="relative -z-10 flex h-full flex-col items-center justify-center px-4 text-center text-black"
+          className="relative flex flex-col items-center justify-center h-full px-4 text-center text-black -z-10"
         >
-          <h1 className="reveal text-5xl font-extrabold md:text-7xl">Building&nbsp;Digital&nbsp;Experiences</h1>
-          <p className="reveal mt-4 max-w-2xl text-lg md:text-2xl">
+          <h1 className="text-5xl font-extrabold reveal md:text-7xl">Building&nbsp;Digital&nbsp;Experiences</h1>
+          <p className="max-w-2xl mt-4 text-lg reveal md:text-2xl">
             We craft performant websites, apps & campaigns that drive growth.
           </p>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="reveal bg-gray-900 py-12 text-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 text-center md:grid-cols-4 md:px-8">
+      <section className="py-12 text-white bg-gray-900 reveal">
+        <div className="grid grid-cols-2 gap-8 px-4 mx-auto text-center max-w-7xl md:grid-cols-4 md:px-8">
           {["120+|Projects", "50+|Clients", "5x|Avg. ROI", "100%|On-time"].map((item) => {
             const [v, l] = item.split("|")
             return (
               <div key={l} className="flex flex-col">
                 <span className="text-4xl font-extrabold">{v}</span>
-                <span className="mt-2 text-sm uppercase tracking-wide text-gray-400">{l}</span>
+                <span className="mt-2 text-sm tracking-wide text-gray-400 uppercase">{l}</span>
               </div>
             )
           })}
@@ -266,26 +203,26 @@ export default function HomePageClient() {
       </section>
 
       {/* PowerPoint-Style Animated Section */}
-      {/* <section ref={sectionRef} className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20"> */}
-        {/* <div className="mx-auto max-w-7xl px-4 md:px-8"> */}
-          {/* Animated Title with Typewriter Effect */}
-          {/* <h2 ref={titleRef} className="mb-4 text-center text-4xl font-bold text-gray-800 md:text-5xl"> */}
-            {/* Text will be animated via GSAP TextPlugin */}
-          {/* </h2> */}
+      {/* <section ref={sectionRef} className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100"> */}
+      {/* <div className="px-4 mx-auto max-w-7xl md:px-8"> */}
+      {/* Animated Title with Typewriter Effect */}
+      {/* <h2 ref={titleRef} className="mb-4 text-4xl font-bold text-center text-gray-800 md:text-5xl"> */}
+      {/* Text will be animated via GSAP TextPlugin */}
+      {/* </h2> */}
 
-          {/* Animated Subtitle */}
-          {/* <p ref={subtitleRef} className="mb-16 text-center text-xl text-gray-600">
+      {/* Animated Subtitle */}
+      {/* <p ref={subtitleRef} className="mb-16 text-xl text-center text-gray-600">
             Experience presentation-quality animations on the web
           </p> */}
 
-          {/* Animated Feature Cards */}
-          {/* <div ref={cardsRef} className="mb-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Animated Feature Cards */}
+      {/* <div ref={cardsRef} className="grid gap-8 mb-16 sm:grid-cols-2 lg:grid-cols-4">
             {pptFeatures.map((feature) => (
               <div
                 key={feature.title}
-                className="ppt-card group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-2xl"
+                className="relative p-8 overflow-hidden transition-all duration-300 bg-white shadow-lg ppt-card group rounded-2xl hover:shadow-2xl"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+                <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:opacity-10"></div>
                 <div className="relative z-10 text-center">
                   <div className="mb-4 text-4xl">{feature.icon}</div>
                   <h3 className="mb-3 text-lg font-semibold text-gray-800">{feature.title}</h3>
@@ -295,55 +232,61 @@ export default function HomePageClient() {
             ))}
           </div> */}
 
-          {/* Animated Stats Counter */}
-          {/* <div ref={statsRef} className="grid grid-cols-2 gap-8 md:grid-cols-4">
+      {/* Animated Stats Counter */}
+      {/* <div ref={statsRef} className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {[
               { number: 250, label: "Animations", suffix: "+" },
               { number: 98, label: "Satisfaction", suffix: "%" },
               { number: 15, label: "Effects", suffix: "" },
               { number: 60, label: "FPS", suffix: "" },
             ].map((stat) => (
-              <div key={stat.label} className="stat-container text-center">
+              <div key={stat.label} className="text-center stat-container">
                 <div className="mb-2 text-3xl font-bold text-indigo-600 md:text-4xl">
                   <span className="stat-number">{stat.number}</span>
                   <span>{stat.suffix}</span>
                 </div>
-                <div className="text-sm uppercase tracking-wide text-gray-500">{stat.label}</div>
+                <div className="text-sm tracking-wide text-gray-500 uppercase">{stat.label}</div>
               </div>
             ))}
           </div> */}
 
-          {/* Interactive Demo Button */}
-          {/* <div className="mt-16 text-center">
-            <button className="group relative overflow-hidden rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
+      {/* Interactive Demo Button */}
+      {/* <div className="mt-16 text-center">
+            <button className="relative px-8 py-4 overflow-hidden font-semibold text-white transition-all duration-300 rounded-full shadow-lg group bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-xl hover:scale-105">
               <span className="relative z-10">See More Effects</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+              <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:opacity-100"></div>
             </button>
           </div>
         </div>
       </section> */}
 
       {/* Services */}
-      <section id="services" className="mx-auto max-w-7xl px-4 py-20 md:px-8">
-        <h2 className="reveal mb-12 text-center text-3xl font-bold md:text-4xl">Services</h2>
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((s) => (
-            <div
-              key={s.title}
-              className="reveal flex flex-col items-center rounded-2xl bg-white p-8 shadow-lg transition hover:-translate-y-1 hover:shadow-2xl"
-            >
-              <Image src={s.icon || "/placeholder.svg"} alt={s.title} width={48} height={48} />
-              <h3 className="mt-4 text-lg font-semibold">{s.title}</h3>
-              <p className="mt-2 text-center text-sm text-gray-500">{s.desc}</p>
-            </div>
-          ))}
+   <section id="services" className="px-4 py-20 mx-auto max-w-7xl md:px-8">
+  <h2 className="mb-12 text-3xl font-bold text-center reveal md:text-4xl">
+    Solar Services
+  </h2>
+
+  <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+    {services.map((s) => (
+      <div
+        key={s.title}
+        className="flex flex-col items-center p-8 transition-all duration-300 transform bg-white shadow-lg solar-service rounded-2xl group hover:-translate-y-2 hover:scale-105 hover:shadow-2xl"
+      >
+        <div className="text-5xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+          {s.icon}
         </div>
-      </section>
+        <h3 className="mt-4 text-lg font-semibold text-center">{s.title}</h3>
+        <p className="mt-2 text-sm text-center text-gray-500">{s.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
 
       {/* Projects */}
-      <section id="projects" className="bg-gray-100 py-20">
-        <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <h2 className="reveal mb-10 text-center text-3xl font-bold md:text-4xl">Recent Projects</h2>
+      <section id="projects" className="py-20 bg-gray-100">
+        <div className="px-4 mx-auto max-w-7xl md:px-8">
+          <h2 className="mb-10 text-3xl font-bold text-center reveal md:text-4xl">Recent Projects</h2>
           <Swiper
             slidesPerView={1}
             spaceBetween={24}
@@ -352,13 +295,13 @@ export default function HomePageClient() {
           >
             {projects.map((p) => (
               <SwiperSlide key={p.title} className="group">
-                <div className="overflow-hidden rounded-2xl shadow-lg">
+                <div className="overflow-hidden shadow-lg rounded-2xl">
                   <Image
                     src={p.img || "/placeholder.svg"}
                     alt={p.title}
                     width={800}
                     height={500}
-                    className="h-64 w-full object-cover transition duration-300 group-hover:scale-105"
+                    className="object-cover w-full h-64 transition duration-300 group-hover:scale-105"
                   />
                 </div>
                 <h3 className="mt-4 text-lg font-semibold text-gray-800">{p.title}</h3>
@@ -369,9 +312,9 @@ export default function HomePageClient() {
       </section>
 
       {/* Partners */}
-      <section className="bg-gray-900 py-12">
-        <div className="relative mx-auto flex max-w-7xl overflow-hidden">
-          <div className="animate-marquee flex shrink-0 gap-16">
+      <section className="py-12 bg-gray-900">
+        <div className="relative flex mx-auto overflow-hidden max-w-7xl">
+          <div className="flex gap-16 animate-marquee shrink-0">
             {partners.concat(partners).map((logo, i) => (
               <Image
                 key={i}
@@ -379,7 +322,7 @@ export default function HomePageClient() {
                 alt="Partner"
                 width={120}
                 height={60}
-                className="opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0"
+                className="transition opacity-70 grayscale hover:opacity-100 hover:grayscale-0"
               />
             ))}
           </div>
@@ -387,19 +330,19 @@ export default function HomePageClient() {
       </section>
 
       {/* Contact CTA */}
-      <section id="contact" className="reveal mx-auto max-w-3xl px-4 py-24 text-center md:px-8">
+      <section id="contact" className="max-w-3xl px-4 py-24 mx-auto text-center reveal md:px-8">
         <h2 className="text-3xl font-bold md:text-4xl">Have a project in mind?</h2>
         <p className="mt-4 text-lg text-gray-600">Let&apos;s turn your idea into a high‑impact digital experience.</p>
         <Link
           href="mailto:hello@jjjjjj.com"
-          className="mt-8 inline-block rounded-full bg-red-600 px-10 py-4 text-sm font-semibold uppercase tracking-wide text-white shadow-lg hover:bg-red-700"
+          className="inline-block px-10 py-4 mt-8 text-sm font-semibold tracking-wide text-white uppercase bg-red-600 rounded-full shadow-lg hover:bg-red-700"
         >
           Get in touch
         </Link>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 py-10 text-center text-sm text-gray-400">
+      <footer className="py-10 text-sm text-center text-gray-400 bg-gray-900">
         <p>© {new Date().getFullYear()} Vahlay Consulting. All rights reserved.</p>
       </footer>
 
