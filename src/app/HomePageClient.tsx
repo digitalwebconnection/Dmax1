@@ -345,8 +345,7 @@ export default function HomePageClient() {
       {/* blogs */}
       <main className="bg-[#003554] text-white rounded-t-4xl mt-20">
         {/* Blogs Section */}
-        <section className="pt-24 pb-16 bg-[#003554] relative text-center rounded-t-4
-        xl ">
+        <section className="pt-24 pb-16 bg-[#003554] relative text-center rounded-t-4xl ">
           {/* Curved Top Shape */}
           {/* <div className="absolute top-0 left-0 w-full h-32 bg-white rounded-t-[50%] z-0"></div> */}
 
