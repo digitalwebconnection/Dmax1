@@ -226,6 +226,41 @@ export default function HomePageClient() {
         </div>
       </section> */}
 
+
+       <section className="flex justify-center py-12 bg-white">
+      <div className="flex flex-col gap-4 px-4 sm:flex-row sm:gap-0">
+        {/* Left Card */}
+        <div className="flex flex-col items-center justify-center p-6 border rounded-md w-64 sm:rounded-l-lg border-[#0A4D68]">
+          <div className="w-12 h-12 mb-4 bg-[#0A4D68] text-white rounded-full flex items-center justify-center text-xl">
+            {/* Example icon (flow chart) */}
+            <span>🗂️</span>
+          </div>
+          <p className="text-2xl font-semibold text-gray-800">20+</p>
+          <p className="text-sm text-gray-600">Projects</p>
+        </div>
+
+        {/* Center Card (highlighted) */}
+        <div className="flex flex-col items-center justify-center p-6 w-64 bg-[#0A4D68] text-white shadow-xl z-10 sm:rounded-none sm:border-y sm:border-t-0 sm:border-b-0">
+          <div className="w-12 h-12 mb-4 bg-white text-[#0A4D68] rounded-full flex items-center justify-center text-xl">
+            {/* Example icon (capacity) */}
+            <span>📦</span>
+          </div>
+          <p className="text-2xl font-semibold">78 MW+</p>
+          <p className="text-sm">Total Capacity</p>
+        </div>
+
+        {/* Right Card */}
+        <div className="flex flex-col items-center justify-center p-6 border rounded-md w-64 sm:rounded-r-lg border-[#0A4D68]">
+          <div className="w-12 h-12 mb-4 bg-[#0A4D68] text-white rounded-full flex items-center justify-center text-xl">
+            {/* Example icon (employees) */}
+            <span>👥</span>
+          </div>
+          <p className="text-2xl font-semibold text-gray-800">70+</p>
+          <p className="text-sm text-gray-600">Employees</p>
+        </div>
+      </div>
+    </section>
+
       {/* Services */}
       <section id="services" className="px-4 py-20 mx-auto max-w-7xl md:px-8">
         <h2 className="mb-12 text-3xl font-bold text-center reveal md:text-4xl">Solar Services</h2>
