@@ -66,7 +66,7 @@ function usePowerPointAnimations() {
           opacity: 0,
         }).to(titleRef.current, {
           duration: 2,
-          text: "PowerPoint-Style Animations",
+          text: "Power Your Home, Sustain Our Planet: Go Solar Today",
           ease: "none",
         })
       }
@@ -184,12 +184,12 @@ export default function HomePageClient() {
   const services = [
     {
       title: "Web Development",
-      icon: "/icons/code.svg",
+      icon: "https://www.investopedia.com/thmb/HNgIWqoqYesoBAo6zqWc9LiiWlg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1278948452-e1fdce3baef44af28f449ab36d6717f3.jpg",
       desc: "Modern, performant websites & apps built with React / Next.js.",
     },
     {
       title: "Digital Marketing",
-      icon: "/icons/megaphone.svg",
+      icon: "https://img.freepik.com/free-photo/solar-panels-meadow_1286-146.jpg?semt=ais_hybrid&w=740",
       desc: "SEO, PPC & social campaigns that turn clicks into customers.",
     },
     {
@@ -218,8 +218,8 @@ export default function HomePageClient() {
   /* PowerPoint-style section data */
   const pptFeatures = [
     { title: "Slide Transitions", icon: "🎬", desc: "Smooth transitions between content sections" },
-    { title: "Typewriter Effects", icon: "⌨️", desc: "Text appears character by character" },
-    { title: "Staggered Animations", icon: "🎭", desc: "Elements appear in sequence with delays" },
+    { title: "Slide Transitions", icon: "🎬", desc: "Smooth transitions between content sections" },
+    { title: "Slide Transitions", icon: "🎬", desc: "Smooth transitions between content sections" },
     { title: "Bounce & Scale", icon: "🎯", desc: "Dynamic scaling and bouncing effects" },
   ]
 
